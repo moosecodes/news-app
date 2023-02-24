@@ -9,9 +9,8 @@ use Carbon\Carbon;
 
 class NewsController extends Controller
 {
-    protected mixed $newsDataResponse = [];
-    protected mixed $newsApiResponse = [];
-
+    private mixed $newsDataResponse = [];
+    private mixed $newsApiResponse = [];
     public function fetch() {
         $this->queryNewsSources();
 
@@ -25,9 +24,11 @@ class NewsController extends Controller
             $this->queryNewsSources();
         }
 
-        return response('fetched news from sources', 200);
+        return response('fetched news from sources!', 200);
     }
-    private function queryNewsSources() {
+
+    private function queryNewsSources()
+    {
         $this->newsapi_top_headlines();
         $this->newsdata_api_latest();
     }
@@ -78,7 +79,7 @@ class NewsController extends Controller
                 if (
                     isset($articles[$x]['author']) &&
                     isset($articles[$x]['content']) &&
-                    ! NewsArticle::where('title', $articles[$x]['title'])->exists()
+                    !NewsArticle::where('title', $articles[$x]['title'])->exists()
                 ) {
                     $article = new NewsArticle;
                     $article->api_source = 'newsapi.org';

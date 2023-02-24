@@ -17,7 +17,7 @@ class NewsMiddleware
     {
         if ($request->input('token') !== 'newsapi-news-token') {
 //            return redirect('/');
-            return response('wrong token!', 403);
+            return response('invalid token!', 403);
         }
         return $next($request);
     }

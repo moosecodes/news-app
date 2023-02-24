@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\LikeArticleController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\SaveArticleController;
+use App\Http\Controllers\SearchNewsController;
+use App\Http\Controllers\ViewedArticleController;
 use App\Http\Controllers\WeatherController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,14 +36,10 @@ Route::middleware([
 ])->group(function() {
     Route::get('/news/fetch', [NewsController::class, 'fetch']);
 
-//    Route::get('/newsapi/fetch', [NewsAPIController::class, 'fetch']);
-//    Route::get('/newscatcher/fetch', [NewsCatcherAPIController::class, 'fetch']);
-//    Route::get('/newsdata/fetch', [NewsDataAPIController::class, 'fetch']);
-//
-//    Route::put('/like', [NewsBaseController::class, 'like']);
-//    Route::put('/save', [NewsBaseController::class, 'save']);
-//
-//    Route::post('/viewed', [NewsBaseController::class, 'viewed']);
-//    Route::post('/search', [NewsBaseController::class, 'search']);  // primitive search component
+    Route::put('/like', [LikeArticleController::class, 'like']);
+    Route::put('/save', [SaveArticleController::class, 'save']);
+
+    Route::post('/viewed', [ViewedArticleController::class, 'viewed']);
+    Route::post('/search', [SearchNewsController::class, 'search']);  // primitive search component
 });
 
