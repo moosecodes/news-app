@@ -9,8 +9,8 @@ use Carbon\Carbon;
 
 class NewsController extends Controller
 {
-    protected mixed $newsdataApiResponse = [];
-    protected mixed $newsapiApiResponse = [];
+    protected mixed $newsDataResponse = [];
+    protected mixed $newsApiResponse = [];
 
     public function fetch() {
         $this->queryNewsSources();
@@ -31,17 +31,16 @@ class NewsController extends Controller
         $this->newsapi_top_headlines();
         $this->newsdata_api_latest();
     }
-    public function newsdata_api_latest()
+    private function newsdata_api_latest()
     {
-        // https://newsdata.io/documentation
-        $this->newsdataApiResponse = Http::get(env('NEWSDATA_API_URL'), [
+        $this->newsDataResponse = Http::get(env('NEWSDATA_API_URL'), [
             'apikey' => env('NEWSDATA_API_KEY'),
             'country' => 'us',
 //            'category' => 'sports,health',
             'language' => 'en',
         ]);
 
-        $articles = $this->newsdataApiResponse['results'];
+        $articles = $this->newsDataResponse['results'];
 
         for ($x = 0; $x < count($articles); $x++) {
             if (
@@ -66,14 +65,14 @@ class NewsController extends Controller
             }
         }
     }
-    public function newsapi_top_headlines()
+    private function newsapi_top_headlines()
     {
         try {
-            $this->newsapiApiResponse = Http::get('https://newsapi.org/v2/top-headlines', [
+            $this->newsApiResponse = Http::get('https://newsapi.org/v2/top-headlines', [
                 'country' => 'us',
                 'apiKey' => env('NEWSAPI_ORG_KEY')
             ]);
-            $articles = $this->newsapiApiResponse->json()['articles'];
+            $articles = $this->newsApiResponse->json()['articles'];
 
             for($x = 0; $x < count($articles); $x++) {
                 if (
