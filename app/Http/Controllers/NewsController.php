@@ -24,6 +24,8 @@ class NewsController extends Controller
         } else {
             $this->queryNewsSources();
         }
+
+        return response('fetched news from sources', 200);
     }
     private function queryNewsSources() {
         $this->newsapi_top_headlines();
@@ -50,20 +52,15 @@ class NewsController extends Controller
                 $article = new NewsArticle;
                 $article->api_source = 'newsdata.io';
 
+                $article->source_id = $articles[$x]['source_id'];
                 $article->title = $articles[$x]['title'];
                 $article->link = $articles[$x]['link'];
-                $article->video_url = $articles[$x]['video_url'];
-                $article->pubDate = $articles[$x]['pubDate'];
-                $article->image_url = $articles[$x]['image_url'];
-                $article->source_id = $articles[$x]['source_id'];
-                $article->language = $articles[$x]['language'];
                 $article->description = $articles[$x]['description'];
                 $article->content = $articles[$x]['content'];
+                $article->publishedAt = $articles[$x]['pubDate'];
 
-//                $article->keywords = implode(', ', $articles[$x]['keywords']);
-//                $article->creator = implode(', ', $articles[$x]['creator']);
-//                $article->category = implode(', ', $articles[$x]['category']);
-//                $article->country = implode(', ', $articles[$x]['country']);
+                $article->image_url = $articles[$x]['image_url'];
+                $article->language = $articles[$x]['language'];
 
                 $article->save();
             }
@@ -86,14 +83,16 @@ class NewsController extends Controller
                 ) {
                     $article = new NewsArticle;
                     $article->api_source = 'newsapi.org';
-                    $article->source = $articles[$x]['source']['name'];
-                    $article->author = $articles[$x]['author'];
+
+                    $article->source_id = $articles[$x]['source']['name'];
                     $article->title = $articles[$x]['title'];
+                    $article->link = $articles[$x]['url'];
                     $article->description = $articles[$x]['description'];
-                    $article->url = $articles[$x]['url'];
-                    $article->urlToImage = $articles[$x]['urlToImage'];
-                    $article->publishedAt = $articles[$x]['publishedAt'];
                     $article->content = $articles[$x]['content'];
+                    $article->publishedAt = $articles[$x]['publishedAt'];
+
+                    $article->author = $articles[$x]['author'];
+                    $article->image_url = $articles[$x]['urlToImage'];
                     $article->save();
                 }
             }
