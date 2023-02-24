@@ -4,7 +4,7 @@
         "dev": "vite",
         "build": "vite build && vite build --ssr",
         "lint": "npx eslint ./resources/js",
-        "lint:fix": "npx eslint --fix ./resources/js/**/*.vue",
+        "lint:fix": "npx eslint --fix ./resources/js/**/*.{vue,js}",
         "tailwind:check": "npx prettier resources/js/**/*.vue",
         "tailwind:fix": "npx prettier resources/js/**/*.vue --write"
     },
