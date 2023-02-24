@@ -9,21 +9,21 @@ import NavLink from '@/Inertia/NavLink.vue';
 import ResponsiveNavLink from '@/Inertia/ResponsiveNavLink.vue';
 
 defineProps({
-    title: String,
+  title: String,
 });
 
 const showingNavigationDropdown = ref(false);
 
 const switchToTeam = (team) => {
-    router.put(route('current-team.update'), {
-        team_id: team.id,
-    }, {
-        preserveState: false,
-    });
+  router.put(route('current-team.update'), {
+    team_id: team.id,
+  }, {
+    preserveState: false,
+  });
 };
 
 const logout = () => {
-    router.post(route('logout'));
+  router.post(route('logout'));
 };
 </script>
 

@@ -13,8 +13,8 @@ const newsStore = useNewsStore()
 let userInput = ref('')
 
 const props = defineProps({
-    newest: Object,
-    trending: Object,
+  newest: Object,
+  trending: Object,
 })
 
 onMounted(() => {

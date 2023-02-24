@@ -3,10 +3,10 @@ import { Head, Link } from '@inertiajs/vue3';
 import NewsPage from "@/Components/NewsPage.vue";
 
 defineProps({
-    canLogin: Boolean,
-    canRegister: Boolean,
-    laravelVersion: String,
-    phpVersion: String
+  canLogin: Boolean,
+  canRegister: Boolean,
+  laravelVersion: String,
+  phpVersion: String
 });
 </script>
 

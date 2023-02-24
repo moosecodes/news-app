@@ -10,20 +10,20 @@ const pinia = createPinia()
 const appName = 'Moosecodes.com';
 
 createServer((page) =>
-    createInertiaApp({
-        page,
-        render: renderToString,
-        title: (title) => `${title} - ${appName}`,
-        resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
-        setup({ App, props, plugin }) {
-            return createSSRApp({ render: () => h(App, props) })
-                .use(plugin)
-                .use(pinia)
-                .use(ZiggyVue, {
-                    ...page.props.ziggy,
-                    location: new URL(page.props.ziggy.location),
-                })
+  createInertiaApp({
+    page,
+    render: renderToString,
+    title: (title) => `${title} - ${appName}`,
+    resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
+    setup({ App, props, plugin }) {
+      return createSSRApp({ render: () => h(App, props) })
+        .use(plugin)
+        .use(pinia)
+        .use(ZiggyVue, {
+          ...page.props.ziggy,
+          location: new URL(page.props.ziggy.location),
+        })
 
-        },
-    })
+    },
+  })
 );
