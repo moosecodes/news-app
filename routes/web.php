@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\NewsArticle;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -16,11 +17,15 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
+    $newest = NewsArticle::orderBy('id', 'DESC')->limit(10)->get();
+    $trending = NewsArticle::orderBy('favs', 'DESC')->limit(3)->get();
     return Inertia::render('HomePage', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
+        'newest' => $newest,
+        'trending' => $trending
     ]);
 });
 
