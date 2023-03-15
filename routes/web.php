@@ -17,8 +17,15 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    $newest = NewsArticle::orderBy('id', 'DESC')->limit(10)->get();
-    $trending = NewsArticle::orderBy('favs', 'DESC')->limit(3)->get();
+    $newest = NewsArticle::where('api_source', '=', 'newsapi.org')
+        ->orderBy('id', 'DESC')
+        ->limit(10)
+        ->get();
+
+    $trending = NewsArticle::orderBy('favs', 'DESC')
+        ->limit(3)
+        ->get();
+
     return Inertia::render('HomePage', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),

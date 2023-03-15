@@ -16,7 +16,7 @@ async function getWeather(zip = '90004') {
 </script>
 
 <template>
-  <div class="my-4 text-left text-sm font-bold text-gray-400">
+  <div class="my-4 text-left text-sm font-bold text-gray-600">
     <slot />
     <div
       v-if="currentTemp.length"

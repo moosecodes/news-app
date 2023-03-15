@@ -37,7 +37,7 @@ class NewsController extends Controller
         $this->newsDataResponse = Http::get(env('NEWSDATA_API_URL'), [
             'apikey' => env('NEWSDATA_API_KEY'),
             'country' => 'us',
-//            'category' => 'sports,health',
+            'category' => 'sports,health',
             'language' => 'en',
         ]);
 

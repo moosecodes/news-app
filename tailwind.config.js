@@ -19,5 +19,10 @@ module.exports = {
     },
 
     plugins: [
-        require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('@tailwindcss/line-clamp'),],
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/typography'),
+        require('@tailwindcss/line-clamp'),
+    ],
+
+    darkMode: ['class', '[data-mode="temporary-fix-to-disable-dark-mode-delete-me"]'], // TODO: DeleteMe
 };
