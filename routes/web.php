@@ -17,12 +17,12 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    $newest = NewsArticle::where('api_source', '=', 'newsapi.org')
+    $newest = NewsArticle::query()->where('api_source', '=', 'newsapi.org')
         ->orderBy('id', 'DESC')
         ->limit(10)
         ->get();
 
-    $trending = NewsArticle::orderBy('favs', 'DESC')
+    $trending = NewsArticle::query()->orderBy('favs', 'DESC')
         ->limit(3)
         ->get();
 

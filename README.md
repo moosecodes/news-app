@@ -11,10 +11,8 @@ These are the APIs that are consumed by this application:
 - newscatcher api
 - weather api
 
-If you have not run migrations, you can wipe the database clean and recreate the tables with:
-- `sail artisan migrate:fresh`
-
-This application uses docker compose via Laravel Sail to start. To start:
+#### This application uses docker compose via Laravel Sail to start.
+To start:
 - run `composer install`
 - run `npm ci` or `npm install` or `yarn install`
 - run `npm run build` (optional)
@@ -22,3 +20,13 @@ This application uses docker compose via Laravel Sail to start. To start:
 - run `sail up -d` or `./vendor/bin/sail up -d`
 - run `sail artisan queue:work`
 - run `sail artisan websockets:serve`
+
+#### Database migration commands:
+
+`sail artisan migrate:refresh`
+
+`sail artisan migrate:refresh --path=/database/migrations/articles`
+
+`sail artisan migrate:refresh --path=/database/migrations/visits`
+
+`sail artisan migrate:fresh`
