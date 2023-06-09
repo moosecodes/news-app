@@ -25,8 +25,10 @@ To start:
 
 `sail artisan migrate:refresh`
 
+Create news articles table:
 `sail artisan migrate:refresh --path=/database/migrations/articles`
 
+Create landing page visits table:
 `sail artisan migrate:refresh --path=/database/migrations/visits`
 
 `sail artisan migrate:fresh`
